@@ -1,9 +1,10 @@
 "use client"
-import { api } from "@/convex/_generated/api";
+// import { api } from "@/convex/_generated/api";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
 import Image from "next/image";
 import { useEffect } from "react";
+import { api } from "../convex/_generated/api";
 
 export default function Home() {
   const {user} = useUser();

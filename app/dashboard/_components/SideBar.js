@@ -1,9 +1,10 @@
 "use client"
-import { Button } from '@/@/components/ui/button'
-import { Progress } from '@/@/components/ui/progress'
+import { Button } from '../../../@/components/ui/button'
+import { Progress } from '../../../@/components/ui/progress'
 import { Layout, Shield } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import UploadPdfDialog from './UploadPdfDialog'
 
 function SideBar() {
     const [pdfUploaded, setPdfUploaded] = useState(0);
@@ -20,7 +21,10 @@ function SideBar() {
             <Image src={'/logo.svg'} alt='logo' width={200} height={150}/>
 
             <div className='mt-10'>
-                <Button className='w-full'>+Upload PDF</Button>
+                <UploadPdfDialog>
+                    <Button className="w-full">+Upload PDF</Button>
+                </UploadPdfDialog>
+
 
                 <div className='flex gap-2 items-center p-3 mt-5 hover:bg-slate-100 rounded-lg cursor-pointer'>
                     <Layout/>
