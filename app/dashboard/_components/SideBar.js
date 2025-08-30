@@ -21,11 +21,8 @@ function SideBar() {
             <Image src={'/logo.svg'} alt='logo' width={200} height={150}/>
 
             <div className='mt-10'>
-                <UploadPdfDialog>
-                    <Button className="w-full">+Upload PDF</Button>
-                </UploadPdfDialog>
-
-
+                <UploadPdfDialog/>
+                    
                 <div className='flex gap-2 items-center p-3 mt-5 hover:bg-slate-100 rounded-lg cursor-pointer'>
                     <Layout/>
                     <h2>Workspace</h2>
