@@ -1,7 +1,54 @@
-import { AlignCenter, AlignLeft, AlignRight, Bold, Heading1, Heading2, Heading3, Highlighter, Italic, List, Subscript, Superscript, Underline} from 'lucide-react'
+"use client"
+import { useAction, useMutation } from 'convex/react';
+import { AlignCenter, AlignLeft, AlignRight, Bold, Heading1, Heading2, Heading3, Highlighter, Italic, List, Sparkles, Subscript, Superscript, Underline} from 'lucide-react'
+import { useParams } from 'next/navigation';
 import React from 'react'
+import { api } from '../../../../convex/_generated/api';
+import { generateResult } from '../../../../configs/AiModel';
+import { toast } from 'sonner';
+import { useUser } from '@clerk/nextjs';
 
 function EditorExtension({editor}) {
+    const searchAI = useAction(api.myAction.search);
+    const {fileId} = useParams();
+    const saveNotes = useMutation(api.notes.AddNotes);
+    const {user} = useUser();
+    const onAiClick = async ()=>{
+        toast("AI is getting the answer...");
+
+        const selectedText = editor.state.doc.textBetween(
+            editor.state.selection.from,
+            editor.state.selection.to,
+            ' '
+        );
+
+
+        const result = await searchAI({
+            query : selectedText,
+            fileId : fileId
+        });
+        const UnformattedAnswer = JSON.parse(result);
+        let AllUnformattedAnswer = '';
+        UnformattedAnswer&&UnformattedAnswer.forEach(item => {
+            AllUnformattedAnswer = AllUnformattedAnswer + item.pageContent
+        });
+        const PROMPT = `For question : ${selectedText}. And with the given page content as the answer
+        please give the appropriate answer in HTML formate just the HTML body not the entire document 
+        also since we are just writing answers in a documnet so dont use very large size text with no 
+        CSS styling. The answer content is : ${AllUnformattedAnswer}`;
+
+        const AiResult = (await generateResult(PROMPT)).replace('```', '').replace('html', '').replace('```', '');
+
+        const allText = editor.getHTML();
+        editor.commands.setContent(allText + '<p><strong> Answer: </strong>' + AiResult + '</p>');
+
+        saveNotes({
+            fileId : fileId,
+            notes : editor.getHTML(),
+            createdBy : user.primaryEmailAddress?.emailAddress
+        })
+    }
+
   return editor&&(
     <div>
         <div className="control-group">
@@ -92,9 +139,16 @@ function EditorExtension({editor}) {
 
                 <button
                     onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                    className={editor.isActive({ textAlign: 'right' }) ? 'text-blue-500' : ''}
+                    className={editor.isActive({ textAlign: 'right' }) ? 'text-blue-500' : '' }
                 >
                     <AlignRight strokeWidth={2.5}/>
+                </button>
+
+                <button
+                    onClick={() => onAiClick()}
+                    className={'hover:text-blue-500 cursor-pointer'}
+                >
+                    <Sparkles strokeWidth={2}/>
                 </button>
             </div>
         </div>

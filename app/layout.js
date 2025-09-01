@@ -3,6 +3,7 @@ import "./globals.css";
 import {Outfit} from "next/font/google"
 import Provider from "./provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         className={outfit.className}
       >
         <Provider>{children}</Provider>
+        <Toaster/>
       </body>
     </html>
     </ClerkProvider>
