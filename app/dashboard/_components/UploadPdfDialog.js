@@ -18,8 +18,9 @@ import { api } from "../../../convex/_generated/api"
 import { Loader2Icon } from "lucide-react"
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+import { toast } from "sonner";
 
-function UploadPdfDialog({ children }) {
+function UploadPdfDialog({ isMaxFile }) {
     const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
     const addFileEntry = useMutation(api.fileStorage.AddFileEntryToDb);
     const getFileUrl = useMutation(api.fileStorage.GetFileUrl);
@@ -62,11 +63,12 @@ function UploadPdfDialog({ children }) {
         });
         setOpen(false);
         setLoading(false);
+        toast("File Uploaded Succesfully !")
     }
   return (
     <Dialog open={open}>
       <DialogTrigger asChild>
-        <Button onClick={()=>setOpen(true)} className="w-full">+ Upload PDF File</Button>
+        <Button onClick={()=>setOpen(true)} disabled={isMaxFile} className="w-full hover:cursor-pointer disabled:bg-gray-500 disabled:cursor-not-allowed">+ Upload PDF File</Button>
       </DialogTrigger>
 
       <DialogContent>
@@ -88,7 +90,7 @@ function UploadPdfDialog({ children }) {
         </DialogHeader>
         <DialogFooter className="sm:justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" onClick={()=>setOpen(false)}>
               Close
             </Button>
           </DialogClose>
