@@ -19,6 +19,7 @@ import { Loader2Icon } from "lucide-react"
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { toast } from "sonner";
+import Link from "next/link";
 
 function UploadPdfDialog({ isMaxFile }) {
     const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
@@ -70,7 +71,7 @@ function UploadPdfDialog({ isMaxFile }) {
       <DialogTrigger asChild>
         <Button onClick={()=>setOpen(true)} disabled={isMaxFile} className="w-full hover:cursor-pointer disabled:bg-gray-500 disabled:cursor-not-allowed">+ Upload PDF File</Button>
       </DialogTrigger>
-
+      
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Upload PDF File</DialogTitle>
