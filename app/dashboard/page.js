@@ -1,12 +1,21 @@
 "use client"
 import { useUser } from '@clerk/nextjs'
-import { useQuery } from 'convex/react'
-import React from 'react'
+import { useMutation, useQuery } from 'convex/react'
+import React, { useEffect } from 'react'
 import { api } from '../../convex/_generated/api'
 import FileDisplay from './_components/FileDisplay'
 
 function Dashboard() {
-  const { user } = useUser()
+  const { user } = useUser();
+  const createUser = useMutation(api.user.createUser);
+  const CheckUser = async()=>{
+    const result = await createUser({
+        email: user?.primaryEmailAddress.emailAddress,
+        userName : user?.fullName,
+        imageUrl: user?.imageUrl
+      })
+    }
+  useEffect(()=>{user&&CheckUser();}, [user]);
   const fileList = useQuery(api.fileStorage.GetUserFile, {
     userEmail: user?.primaryEmailAddress?.emailAddress,
   })

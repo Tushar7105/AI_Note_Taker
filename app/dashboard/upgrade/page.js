@@ -21,7 +21,7 @@ function Page() {
                 </h2>
 
                 <p className="mt-2 sm:mt-4">
-                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> 30$ </strong>
+                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> ₹450 </strong>
 
                 <span className="text-sm font-medium text-gray-700">/month</span>
                 </p>
@@ -40,7 +40,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> 20 users included </span>
+                <span className="text-gray-700"> Unlimited PDF uploads</span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -55,7 +55,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> 5GB of storage </span>
+                <span className="text-gray-700"> Unlimited AI query </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -70,7 +70,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> Email support </span>
+                <span className="text-gray-700"> No limit on File-size </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -85,7 +85,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> Help center access </span>
+                <span className="text-gray-700"> Priority Customer Support </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -134,9 +134,8 @@ function Page() {
                 </h2>
 
                 <p className="mt-2 sm:mt-4">
-                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> 20$ </strong>
+                <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> Free </strong>
 
-                <span className="text-sm font-medium text-gray-700">/month</span>
                 </p>
             </div>
 
@@ -153,7 +152,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> 10 users included </span>
+                <span className="text-gray-700"> 5 PDF uploads </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -168,7 +167,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> 2GB of storage </span>
+                <span className="text-gray-700"> 15 AI query a day </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -183,7 +182,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> Email support </span>
+                <span className="text-gray-700"> Max 10 MB file  </span>
                 </li>
 
                 <li className="flex items-center gap-1">
@@ -198,7 +197,7 @@ function Page() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
 
-                <span className="text-gray-700"> Help center access </span>
+                <span className="text-gray-700"> Customer Support </span>
                 </li>
             </ul>
 
