@@ -34,23 +34,23 @@ const CheckoutPage = () => {
 
   return (
     <PayPalScriptProvider options={{ 
-      clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID, // Replace with your actual PayPal client ID
+      clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID, 
       currency: "INR",
       intent: "capture"
     }}>
       <div className="min-h-screen bg-white">
-        {/* Header */}
+
         <div className="bg-white border-b border-gray-200 px-6 py-4">
           <h1 className="text-2xl font-bold text-gray-900">Let's upgrade to PRO</h1>
         </div>
 
-        {/* Main Content */}
+
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
-            {/* Left Side - Plan Details */}
+
             <div className="space-y-8">
-              {/* Plan Info Card */}
+
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="space-y-4">
                   <div>
