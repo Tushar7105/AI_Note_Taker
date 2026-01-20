@@ -1,39 +1,26 @@
-// To run this code you need to install the following dependencies:
-// npm install @google/genai mime
-// npm install -D @types/node
+// AI Model wrapper that uses the server-side API route
+// This avoids CORS issues by routing through Next.js API
 
-import {
-  GoogleGenAI,
-} from '@google/genai';
-
-export const generateResult = async (prompt : string)=>{
-    const ai = new GoogleGenAI({
-      apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+export const generateResult = async (prompt: string): Promise<string> => {
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
     });
 
-  const model = 'gemini-2.5-flash';
-  const config = {
-    thinkingConfig: { thinkingBudget: -1 },
-    responseModalities: ['TEXT'], // ensure text only
-  };
+    const data = await response.json();
 
-  const contents = [
-    {
-      role: 'user',
-      parts: [{ text: prompt }],
-    },
-  ];
+    if (!response.ok) {
+      console.error('API Error:', data.error);
+      throw new Error(data.error || `API error: ${response.status}`);
+    }
 
-  let responseText = '';
-  const response = await ai.models.generateContentStream({
-    model,
-    config,
-    contents,
-  });
-
-  for await (const chunk of response) {
-    if (chunk.text) responseText += chunk.text;
+    return data.result || '';
+  } catch (error) {
+    console.error('generateResult error:', error);
+    throw error;
   }
-
-  return responseText;
-}
+};

@@ -2,19 +2,19 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-    user:defineTable({
-        userName : v.string(),
-        email : v.string(),
-        imageUrl : v.string(),
-        upgrade : v.boolean(),
+    user: defineTable({
+        userName: v.string(),
+        email: v.string(),
+        imageUrl: v.string(),
+        upgrade: v.boolean(),
     }),
 
-    pdfFiles:defineTable({
-        fileId : v.string(),
-        storageId : v.string(),
-        fileName : v.string(),
-        fileUrl : v.string(),
-        createdBy : v.string()
+    pdfFiles: defineTable({
+        fileId: v.string(),
+        storageId: v.string(),
+        fileName: v.string(),
+        fileUrl: v.string(),
+        createdBy: v.string()
     }),
 
     documents: defineTable({
@@ -23,12 +23,12 @@ export default defineSchema({
         metadata: v.any(),
     }).vectorIndex("byEmbedding", {
         vectorField: "embedding",
-        dimensions: 768,
+        dimensions: 384,
     }),
 
     notes: defineTable({
-        fileId : v.string(),
-        notes : v.any(),
-        createdBy : v.string()
+        fileId: v.string(),
+        notes: v.any(),
+        createdBy: v.string()
     })
 })
